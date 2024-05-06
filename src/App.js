@@ -42,8 +42,10 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setJobs([...jobs, ...data.jdList]);
-        setFilteredJobs([...jobs, ...data.jdList])
+        if(jobs.length <= 0){
+          setJobs([...jobs, ...data.jdList]);
+          setFilteredJobs([...jobs, ...data.jdList])
+        }
         setIsLoading(false);
       })
       .catch((error) => console.error('Error fetching jobs:', error));
